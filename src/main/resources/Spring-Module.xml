@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+	<context:annotation-config />
+    <context:property-placeholder location="jdbc.properties"/>
+
+    <bean id="mockDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"  destroy-method="close">
+        <property name="driverClass" value="${jdbc.driverClassName}" />
+        <property name="jdbcUrl" value="${jdbc.mockdata_db_url}" />
+        <property name="user" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+        <property name="maxPoolSize" value="${jdbc.maxPoolSize}" />
+        <property name="minPoolSize" value="${jdbc.minPoolSize}" />
+        <property name="maxStatements" value="${jdbc.maxStatements}" />
+        <property name="testConnectionOnCheckout" value="${jdbc.testConnection}" />
+    </bean>
+
+    <bean id="mockDataSetHolder" class="org.stg.core.MockDataSetHolder" init-method="init"/>
+
+	<bean id="bootStrap" class="org.stg.bootstrap.Bootstrap" init-method="onInit" />
+
+    <!--  DAO -->
+    <bean id="firstNameDAO" class="org.stg.persistence.impl.FirstNameDAOImpl"/>
+    <bean id="lastNameDAO" class="org.stg.persistence.impl.LastNameDAOImpl"/>
+    <bean id="addressDAO" class="org.stg.persistence.impl.AddressDAOImpl"/>
+    <bean id="medicalschoolDAO" class="org.stg.persistence.impl.MedicalschoolDAOImpl"/>
+    <bean id="practitionerDAO" class="org.stg.persistence.impl.PractitionerDAOImpl"/>
+    <bean id="carePlanDAO" class="org.stg.persistence.impl.CarePlanDAOImpl"/>
+    <bean id="problemGoalTaskDAO" class="org.stg.persistence.impl.ProblemGoalTaskDAOImpl"/>
+    <bean id="businessNameDAO" class="org.stg.persistence.impl.BusinessNameDAOImpl"/>
+    <bean id="occupationDAO" class="org.stg.persistence.impl.OccupationDAOImpl"/>
+
+    <!--  Services -->
+    <bean id="layoutMetadataService"  class="org.stg.service.LayoutMetadataService"/>
+    <bean id="recordTypeMetadataService"  class="org.stg.service.RecordTypeMetadataService"/>
+    <bean id="customObjectMetadataService"  class="org.stg.service.CustomObjectMetadataService"/>
+    <bean id="globalValueSetMetadataService"  class="org.stg.service.GlobalValueSetMetadataService"/>
+    <bean id="orgService"                   class="org.stg.service.OrgService"/>
+    <bean id="industriesAccountService"     class="org.stg.service.IndustriesAccountService"/>
+    <bean id="contactService"               class="org.stg.service.ContactService"/>
+    <bean id="industriesRecordTypeService"  class="org.stg.service.IndustriesRecordTypeService"/>
+    <bean id="recordTypeService"            class="org.stg.service.RecordTypeService"/>
+
+    <!-- Geneators -->
+    <bean id="accountGeneratorService"              class="org.stg.service.generator.account.AccountGeneratorService"/>
+    <bean id="industriesAccountGeneratorService"    class="org.stg.service.generator.account.IndustriesAccountGeneratorService"/>
+    <bean id="hcAccountGeneratorService"            class="org.stg.service.generator.account.HCAccountGeneratorService"/>
+    <bean id="fscAccountGeneratorService"           class="org.stg.service.generator.account.FSCAccountGeneratorService"/>
+
+    <bean id="contactGeneratorService"           class="org.stg.service.generator.contact.ContactGeneratorService"/>
+    <bean id="industriesContactGeneratorService" class="org.stg.service.generator.contact.IndustriesContactGeneratorService"/>
+    <bean id="hcContactGeneratorService"         class="org.stg.service.generator.contact.HCContactGeneratorService"/>
+    <bean id="fscContactGeneratorService"         class="org.stg.service.generator.contact.FSCContactGeneratorService"/>
+
+    <bean id="carePlanGeneratorService"          class="org.stg.service.generator.CarePlanGeneratorService"/>
+    <bean id="problemGoalTaskGeneratorService"   class="org.stg.service.generator.ProblemGoalTaskGeneratorService"/>
+
+    <bean id="userService"          class="org.stg.service.UserService"/>
+    <bean id="caseTeamRoleService"  class="org.stg.service.CaseTeamRoleService"/>
+
+    <!--  bulk handlers -->
+	<bean id="bulkHCAccountService"         class="org.stg.service.bulk.BulkHCAccountService" />
+	<bean id="bulkHCContactService"         class="org.stg.service.bulk.BulkHCContactService" />
+    <bean id="bulkFSCAccountService"         class="org.stg.service.bulk.BulkFSCAccountService" />
+    <bean id="bulkFSCContactService"         class="org.stg.service.bulk.BulkFSCContactService" />
+    <bean id="bulkCaseService"              class="org.stg.service.bulk.BulkCaseService" />
+    <bean id="bulkProblemGoalTaskService"   class="org.stg.service.bulk.BulkProblemGoalTaskService" />
+
+    <!-- Entity Data Generators -->
+	<bean id="patientGenerator" class="org.stg.healthcloud.HCPatientGenerator"/>
+    <bean id="clientGenerator" class="org.stg.healthcloud.FSCClientGenerator"/>
+
+
+</beans>

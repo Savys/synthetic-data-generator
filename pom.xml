@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.stg</groupId>
-	<artifactId>Synthetic-Data-Generator</artifactId>
+	<artifactId>SyntheticDataGenerator</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>IndustriesDataGenerator Maven</name>
+	<name>SyntheticDataGenerator Maven</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<java-version>1.8</java-version>
