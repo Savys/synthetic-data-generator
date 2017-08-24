@@ -27,7 +27,7 @@ public class PostalCodeUtil {
     }
 
     public static List<UsPostalCode> readFile() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("/Users/sriram.gopalan/Downloads/free-zipcode-database-Primary.csv"));
+        BufferedReader br = new BufferedReader(new FileReader("/Users/savitha.srinivasan/Downloads/free-zipcode-database-Primary.csv"));
         String line = null;
         List<UsPostalCode> codes = new ArrayList<UsPostalCode>();
         while ((line = br.readLine()) != null) {
